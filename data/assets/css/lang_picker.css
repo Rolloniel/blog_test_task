@@ -1,0 +1,48 @@
+.lang-icon {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #a3a3a3;
+}
+.lang-flag p {
+    margin-top: -20px;
+    font-weight: bold;
+    padding-left: 7px;
+    color: #fff;
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    font-size: 24px;
+}
+.lang-picker a:hover {
+    text-decoration: none;
+    opacity: 0.4;
+}
+.lang-picker {
+    position: fixed;
+    right: 1%;
+    bottom: 2%;
+    width: 42px;
+    z-index: 9999;
+}
+.lang-icon:hover {
+    opacity: 0.8;
+}
+.langs {
+    position: fixed;
+    display: none;
+    right: 1%;
+    bottom: 70px;
+    width: 42px;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+    border: 1px solid #a3a3a3;
+    border-radius: 4px;
+    z-index: 10000;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+#lang_item{
+    margin-bottom: 0;
+}

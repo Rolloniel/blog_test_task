@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block body_class %}blog blog-post{% endblock %}
+
+{% block head_title_base %}{{ post.title }} | {{ SITE_NAME }}{% endblock %}
+
+{% block extra_head %}
+    {{ block.super }}
+    <meta property="og:type" content="article">
+
+    {% load static %}
+    <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    {% load comments %}
+
+
+    {% get_comment_count for post as comment_count %}
+
+    <div class="post-detail">
+        <div class="post">
+            <h1>{{ post.title }}</h1>
+            {% include "news/dateline.html" %}
+
+            {% if user.is_authenticated %}
+                {% if user.pk == post.author.pk or user.is_staff or user.is_superuser%}
+                    <a class="btn btn-default" href="{% url 'news_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil">Edit</span></a>
+                {% endif %}
+            {% endif %}
+            <div class="teaser">{{ post.content_html|safe }}</div>
+
+            <div class="comment">
+                    {% if user.is_authenticated %}
+                        {% get_comment_form for post as form %}
+                        <table>
+                          <form action="{% comment_form_target %}" method="post">
+                            {% csrf_token %}
+                            {{ form.media }}
+                              Comment
+                            {{ form.comment }}
+                            {{ form.content_type }}
+                            {{ form.object_pk }}
+                            {{ form.timestamp }}
+                            {{ form.security_hash }}
+
+                            <input type="hidden" name="next" value="{% url 'news_detail' post.id %}" />
+                            <tr>
+                              <td colspan="2">
+                                <input type="submit" name="submit" value="Post">
+                                <input type="submit" name="preview" value="Preview">
+                              </td>
+                            </tr>
+                          </form>
+                        </table>
+                    {% else %}
+                        <p>Please <a href="{% url 'auth_login' %}">log in</a> to leave a comment.</p>
+                    {% endif %}
+
+                {% get_comment_list for post as comment_list %}
+                {% for comment in comment_list %}
+                    <div class="comment" style="margin-top: 2%">
+                        {{ comment.submit_date }} - {{ comment.user_name }}
+                        <div class="comment-content">
+                            {{ comment.comment|safe }}
+                        </div>
+
+                    </div>
+
+
+                {% endfor %}
+            </div>
+
+
+        </div>
+    </div>
+{% endblock %}

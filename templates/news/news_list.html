@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head_title_base %}{{ SITE_NAME }}{% endblock %}
+
+
+{% block content %}
+    {% if post_list %}
+        <div class="post-list">
+            {% for post in post_list %}
+                <div class="post">
+                    <h2><a href="/news/{{ post.id }}">{{ post.title }}</a></h2>
+                    {% include "news/dateline.html" %}
+                    <div class="teaser">{{ post.teaser_text }}</div>
+                    <p class="more"><a href="/news/{{ post.id }}" class="post-link">read more...</a></p>
+                </div>
+            {% endfor %}
+        </div>
+ {% include "news/pagination.html" with page=post_list %}
+    {% else %}
+        <p class="alert alert-info lead">No news have been published.</p>
+    {% endif %}
+{% endblock %}

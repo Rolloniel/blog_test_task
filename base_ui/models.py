@@ -121,5 +121,4 @@ def set_default_group_permissions(sender, instance, created, **kwargs):
     """ Adds list of default permissions to created group """
     if created:
         for permission in DEFAULT_USER_PERMISSIONS:
-            print("PING!", instance)
             instance.permissions.add(Permission.objects.get(codename=permission))

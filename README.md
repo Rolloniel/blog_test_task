@@ -35,7 +35,14 @@ python manage.py migrate
 python manage.py collectstatic
 
 ```
+6. Create superuser for admin pannel access with:
+```
+python manage.py createsuperuser
+```
+ and follow commands.
+ 
 6. Run server:
 ```
 python manage.py runserver
 ```
+7. Visit http://localhost:8000/ to test functionality

@@ -41,8 +41,21 @@ python manage.py createsuperuser
 ```
  and follow commands.
  
-6. Run server:
+7. Create default user groups with their permissions by running:
+```
+python /utils/initial_user_groups_setup.py
+```
+ 
+8. Run server:
 ```
 python manage.py runserver
 ```
-7. Visit http://localhost:8000/ to test functionality
+9. Visit http://localhost:8000/ to test functionality
+
+# Notes
+
+1. User, Group, Permission, news, post premoderation is available via http://localhost:8000/admin pannel
+
+
+
+

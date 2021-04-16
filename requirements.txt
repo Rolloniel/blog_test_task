@@ -9,7 +9,7 @@ Django==2.2.7
 django-allauth==0.40.0
 django-ckeditor==5.8.0
 django-contrib-comments==1.9.1
-django-debug-toolbar==2.1
+django-debug-toolbar==2.2.1
 django-js-asset==1.2.2
 django-sendgrid-v5==0.8.0
 Django-tinymce-filebrowser==0.2.1
